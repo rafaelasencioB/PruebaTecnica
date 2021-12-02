@@ -17,6 +17,7 @@
 		8A1E50252758C84300D51B8C /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1E50242758C84300D51B8C /* Movie.swift */; };
 		8A1E50272758C93800D51B8C /* MovieError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1E50262758C93800D51B8C /* MovieError.swift */; };
 		8A1E50292758D35F00D51B8C /* MovieLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1E50282758D35F00D51B8C /* MovieLoader.swift */; };
+		8A1E502B2758D54C00D51B8C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1E502A2758D54C00D51B8C /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		8A1E50242758C84300D51B8C /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		8A1E50262758C93800D51B8C /* MovieError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieError.swift; sourceTree = "<group>"; };
 		8A1E50282758D35F00D51B8C /* MovieLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieLoader.swift; sourceTree = "<group>"; };
+		8A1E502A2758D54C00D51B8C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				8A1E50152758C3FD00D51B8C /* Assets.xcassets */,
 				8A1E50172758C3FD00D51B8C /* LaunchScreen.storyboard */,
 				8A1E501A2758C3FD00D51B8C /* Info.plist */,
+				8A1E502A2758D54C00D51B8C /* Utils.swift */,
 			);
 			path = TechnicalTest;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 				8A1E50222758C7FC00D51B8C /* MovieService.swift in Sources */,
 				8A1E500F2758C3FA00D51B8C /* SceneDelegate.swift in Sources */,
 				8A1E50252758C84300D51B8C /* Movie.swift in Sources */,
+				8A1E502B2758D54C00D51B8C /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
