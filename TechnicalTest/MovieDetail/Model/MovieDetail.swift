@@ -8,7 +8,7 @@
 import Foundation
 
 struct MovieDetail: Decodable {
-    let imdbID, Title: String, Year: String, Released: String,
-        Runtime: String, Genre: String, Plot: String, Website: String
+    let imdbID: String, Title: String?, Year: String?, Released: String?,
+        Runtime: String?, Genre: String?, Plot: String?, Website: String?
     
 }
