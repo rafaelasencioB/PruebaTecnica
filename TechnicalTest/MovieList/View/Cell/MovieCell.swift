@@ -22,7 +22,9 @@ class MovieCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        ivMovie.contentMode = .scaleToFill
+        ivMovie.layer.cornerRadius = 60 / 2
+        ivMovie.layer.masksToBounds = true
         // Configure the view for the selected state
     }
     
