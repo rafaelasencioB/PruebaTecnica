@@ -23,6 +23,7 @@
 		8A1E503E2759133F00D51B8C /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1E503D2759133F00D51B8C /* MovieDetail.swift */; };
 		8A1E50412759148A00D51B8C /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1E503F2759148A00D51B8C /* MovieDetailViewController.swift */; };
 		8A1E50422759148A00D51B8C /* MovieDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A1E50402759148A00D51B8C /* MovieDetailViewController.xib */; };
+		8A1E5044275945F000D51B8C /* Extension+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1E5043275945F000D51B8C /* Extension+UIImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		8A1E503D2759133F00D51B8C /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
 		8A1E503F2759148A00D51B8C /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		8A1E50402759148A00D51B8C /* MovieDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailViewController.xib; sourceTree = "<group>"; };
+		8A1E5043275945F000D51B8C /* Extension+UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImageView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				8A1E50172758C3FD00D51B8C /* LaunchScreen.storyboard */,
 				8A1E501A2758C3FD00D51B8C /* Info.plist */,
 				8A1E502A2758D54C00D51B8C /* Utils.swift */,
+				8A1E5043275945F000D51B8C /* Extension+UIImageView.swift */,
 			);
 			path = TechnicalTest;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				8A1E503E2759133F00D51B8C /* MovieDetail.swift in Sources */,
 				8A1E50252758C84300D51B8C /* Movie.swift in Sources */,
 				8A1E50412759148A00D51B8C /* MovieDetailViewController.swift in Sources */,
+				8A1E5044275945F000D51B8C /* Extension+UIImageView.swift in Sources */,
 				8A1E502B2758D54C00D51B8C /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

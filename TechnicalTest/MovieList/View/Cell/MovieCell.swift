@@ -28,6 +28,9 @@ class MovieCell: UITableViewCell {
     
     //MARK: Helpers
     func configure(movie: Movie) {
+        if let url = movie.urlImage {
+            ivMovie.setImage(from: url)
+        }
         self.lbTitle.text = movie.Title
         self.lbYear.text = movie.Year
     }

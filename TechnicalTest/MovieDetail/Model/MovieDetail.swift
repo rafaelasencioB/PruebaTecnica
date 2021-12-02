@@ -9,6 +9,9 @@ import Foundation
 
 struct MovieDetail: Decodable {
     let imdbID: String, Title: String?, Year: String?, Released: String?,
-        Runtime: String?, Genre: String?, Plot: String?, Website: String?
+        Runtime: String?, Genre: String?, Plot: String?, Poster: String?, Website: String?
     
+    var urlImage: URL? {
+        return URL(string: Poster ?? "")
+    }
 }

@@ -37,6 +37,9 @@ class MovieDetailViewController: UIViewController {
     
     //MARK: Helpers
     private func configureUI() {
+        if let url = movie?.urlImage {
+            ivMovieDetail.setImage(from: url)
+        }
         lbTitle.text = movie?.Title
         lbYear.text = movie?.Year
         lbReleased.text = movie?.Released
