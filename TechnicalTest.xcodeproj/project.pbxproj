@@ -18,6 +18,8 @@
 		8A1E50272758C93800D51B8C /* MovieError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1E50262758C93800D51B8C /* MovieError.swift */; };
 		8A1E50292758D35F00D51B8C /* MovieLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1E50282758D35F00D51B8C /* MovieLoader.swift */; };
 		8A1E502B2758D54C00D51B8C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1E502A2758D54C00D51B8C /* Utils.swift */; };
+		8A1E50332758F08000D51B8C /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1E50312758F08000D51B8C /* MovieCell.swift */; };
+		8A1E50342758F08000D51B8C /* MovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A1E50322758F08000D51B8C /* MovieCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		8A1E50262758C93800D51B8C /* MovieError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieError.swift; sourceTree = "<group>"; };
 		8A1E50282758D35F00D51B8C /* MovieLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieLoader.swift; sourceTree = "<group>"; };
 		8A1E502A2758D54C00D51B8C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		8A1E50312758F08000D51B8C /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		8A1E50322758F08000D51B8C /* MovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,12 +70,11 @@
 		8A1E500B2758C3FA00D51B8C /* TechnicalTest */ = {
 			isa = PBXGroup;
 			children = (
+				8A1E502C2758F02300D51B8C /* MovieList */,
 				8A1E50232758C83C00D51B8C /* Model */,
 				8A1E50202758C7EA00D51B8C /* Service */,
 				8A1E500C2758C3FA00D51B8C /* AppDelegate.swift */,
 				8A1E500E2758C3FA00D51B8C /* SceneDelegate.swift */,
-				8A1E50102758C3FA00D51B8C /* MovieListViewController.swift */,
-				8A1E50122758C3FA00D51B8C /* Main.storyboard */,
 				8A1E50152758C3FD00D51B8C /* Assets.xcassets */,
 				8A1E50172758C3FD00D51B8C /* LaunchScreen.storyboard */,
 				8A1E501A2758C3FD00D51B8C /* Info.plist */,
@@ -92,10 +95,53 @@
 		8A1E50232758C83C00D51B8C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8A1E50242758C84300D51B8C /* Movie.swift */,
 				8A1E50262758C93800D51B8C /* MovieError.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		8A1E502C2758F02300D51B8C /* MovieList */ = {
+			isa = PBXGroup;
+			children = (
+				8A1E502D2758F02B00D51B8C /* Model */,
+				8A1E502E2758F02F00D51B8C /* View */,
+				8A1E502F2758F03200D51B8C /* Controller */,
+			);
+			path = MovieList;
+			sourceTree = "<group>";
+		};
+		8A1E502D2758F02B00D51B8C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8A1E50242758C84300D51B8C /* Movie.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8A1E502E2758F02F00D51B8C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8A1E50302758F05F00D51B8C /* Cell */,
+				8A1E50122758C3FA00D51B8C /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8A1E502F2758F03200D51B8C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8A1E50102758C3FA00D51B8C /* MovieListViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8A1E50302758F05F00D51B8C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8A1E50312758F08000D51B8C /* MovieCell.swift */,
+				8A1E50322758F08000D51B8C /* MovieCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,6 +204,7 @@
 			files = (
 				8A1E50192758C3FD00D51B8C /* LaunchScreen.storyboard in Resources */,
 				8A1E50162758C3FD00D51B8C /* Assets.xcassets in Resources */,
+				8A1E50342758F08000D51B8C /* MovieCell.xib in Resources */,
 				8A1E50142758C3FA00D51B8C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -171,6 +218,7 @@
 			files = (
 				8A1E50112758C3FA00D51B8C /* MovieListViewController.swift in Sources */,
 				8A1E50272758C93800D51B8C /* MovieError.swift in Sources */,
+				8A1E50332758F08000D51B8C /* MovieCell.swift in Sources */,
 				8A1E50292758D35F00D51B8C /* MovieLoader.swift in Sources */,
 				8A1E500D2758C3FA00D51B8C /* AppDelegate.swift in Sources */,
 				8A1E50222758C7FC00D51B8C /* MovieService.swift in Sources */,
