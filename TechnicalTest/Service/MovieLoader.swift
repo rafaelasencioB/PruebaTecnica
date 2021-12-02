@@ -21,12 +21,12 @@ class MovieLoader: MovieService {
     
     private let jsonDecoder = Utils.jsonDecoder
     
-    func fetchMovies(completion: @escaping (Result<MovieResponse, MovieError>) -> Void) {
+    func fetchMovies(withTitle title: String, completion: @escaping (Result<MovieResponse, MovieError>) -> Void) {
         guard let url = URL(string: BASE_URL) else {
             completion(.failure(.invalidEndpoint))
             return
         }
-        self.loadURLAndDecode(url: url, params: nil, completion: completion)
+        self.loadURLAndDecode(url: url, params: ["s": title], completion: completion)
     }
     
     func fetchMovie(withId id: String, completion: @escaping (Result<Movie, MovieError>) -> Void) {

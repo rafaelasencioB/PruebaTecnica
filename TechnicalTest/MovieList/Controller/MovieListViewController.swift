@@ -14,8 +14,15 @@ class MovieListViewController: UIViewController {
     
     //MARK: Properties
     private let reuseIdentifier = "MovieCell"
-    private var movies = [Movie]()
+    
+    private var movies = [Movie]() {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
+    
     private let searchController = UISearchController()
+    private let service: MovieService = MovieLoader.shared
     
     //MARK: Lifecycle
     override func viewDidLoad() {
@@ -27,7 +34,6 @@ class MovieListViewController: UIViewController {
     private func configure() {
         configureSearchController()
         configureTable()
-        loadData()
     }
     
     private func configureSearchController() {
@@ -40,12 +46,6 @@ class MovieListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "MovieCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
-    }
-    
-    private func loadData() {
-        movies.append(Movie(imdbID: "1", Title: "El señor de los anillos", Year: "2000"))
-        movies.append(Movie(imdbID: "2", Title: "La guerra de las galaxias", Year: "2001"))
-        movies.append(Movie(imdbID: "3", Title: "El curioso caso de Benjamin Button", Year: "2002"))
     }
 }
 
@@ -68,7 +68,21 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
 extension MovieListViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text, !text.isEmpty, text.count > 2 else { return }
-        print(text)
+        guard let title = searchController.searchBar.text, !title.isEmpty, title.count > 2 else {
+            if let text = searchController.searchBar.text, text.isEmpty && self.movies.count > 0 {
+                self.movies = []
+            }
+            return
+        }
+        
+        service.fetchMovies(withTitle: title) { result in
+            switch result {
+                
+            case .success(let movies):
+                self.movies = movies.result
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 }
