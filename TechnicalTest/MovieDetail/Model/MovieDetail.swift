@@ -1,0 +1,14 @@
+//
+//  MovieDetail.swift
+//  TechnicalTest
+//
+//  Created by Rafael Asencio on 2/12/21.
+//
+
+import Foundation
+
+struct MovieDetail: Decodable {
+    let imdbID, Title: String, Year: String, Released: String,
+        Runtime: String, Genre: String, Plot: String, Website: String
+    
+}

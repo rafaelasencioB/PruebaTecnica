@@ -29,12 +29,12 @@ class MovieLoader: MovieService {
         self.loadURLAndDecode(url: url, params: ["s": title], completion: completion)
     }
     
-    func fetchMovie(withId id: String, completion: @escaping (Result<Movie, MovieError>) -> Void) {
+    func fetchMovie(withId id: String, completion: @escaping (Result<MovieDetail, MovieError>) -> Void) {
         guard let url = URL(string: BASE_URL) else {
             completion(.failure(.invalidEndpoint))
             return
         }
-        self.loadURLAndDecode(url: url, params: ["i": id], completion: completion)
+        self.loadURLAndDecode(url: url, params: ["i": id, "plot": "full"], completion: completion)
     }
     
     private func loadURLAndDecode<D: Decodable>(url: URL, params: [String: String]? = nil, completion: @escaping(Result<D, MovieError>) -> Void) {

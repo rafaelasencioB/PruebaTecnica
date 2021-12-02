@@ -62,6 +62,21 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configure(movie: movie)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let id = self.movies[indexPath.row].imdbID
+        service.fetchMovie(withId: id) { result in
+            switch result {
+            case .success(let movie):
+                let controller = MovieDetailViewController(movie: movie)
+                self.present(controller, animated: true)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }
 
 //MARK:
