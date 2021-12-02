@@ -15,6 +15,7 @@ class MovieListViewController: UIViewController {
     //MARK: Properties
     private let reuseIdentifier = "MovieCell"
     private var movies = [Movie]()
+    private let searchController = UISearchController()
     
     //MARK: Lifecycle
     override func viewDidLoad() {
@@ -22,9 +23,17 @@ class MovieListViewController: UIViewController {
         configure()
     }
     
+    //MARK: Helpers
     private func configure() {
+        configureSearchController()
         configureTable()
         loadData()
+    }
+    
+    private func configureSearchController() {
+        navigationItem.searchController = searchController
+        searchController.searchBar.placeholder = "Search movie by title"
+        searchController.searchResultsUpdater = self
     }
     
     private func configureTable() {
@@ -52,5 +61,14 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
         let movie = movies[indexPath.row]
         cell.configure(movie: movie)
         return cell
+    }
+}
+
+//MARK:
+extension MovieListViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text, !text.isEmpty, text.count > 2 else { return }
+        print(text)
     }
 }
