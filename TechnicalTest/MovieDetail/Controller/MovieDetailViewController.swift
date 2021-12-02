@@ -33,6 +33,7 @@ class MovieDetailViewController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
+        configureTapGesture()
     }
     
     //MARK: Helpers
@@ -46,6 +47,30 @@ class MovieDetailViewController: UIViewController {
         lbRuntime.text = movie?.Runtime
         lbGenre.text = movie?.Genre
         lbPlot.text = movie?.Plot
-        lbWebsite.text = movie?.Website
+        lbWebsite.text = "Website"
+        lbWebsite.textColor = .systemBlue
+    }
+    
+    private func configureTapGesture() {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        lbWebsite.isUserInteractionEnabled = true
+        lbWebsite.addGestureRecognizer(gesture)
+    }
+    
+    @objc private func handleTap() {
+        
+        var item = [Any]()
+        
+        if let urlWebsite = movie?.urlWebsite, UIApplication.shared.canOpenURL(urlWebsite) {
+            item.append(urlWebsite)
+        } else if let urlImage = movie?.urlImage {
+            item.append(urlImage)
+        } else {
+            return
+        }
+        
+        let activity = UIActivityViewController(activityItems: item, applicationActivities: nil)
+        activity.popoverPresentationController?.sourceView = self.view
+        self.present(activity, animated: true)
     }
 }

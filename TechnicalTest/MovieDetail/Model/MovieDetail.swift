@@ -14,4 +14,8 @@ struct MovieDetail: Decodable {
     var urlImage: URL? {
         return URL(string: Poster ?? "")
     }
+    
+    var urlWebsite: URL? {
+        return URL(string: Website ?? "")
+    }
 }
