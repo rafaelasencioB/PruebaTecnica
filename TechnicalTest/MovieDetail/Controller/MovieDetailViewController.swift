@@ -33,7 +33,7 @@ class MovieDetailViewController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
-        configureTapGesture()
+        configureTapGestures()
     }
     
     //MARK: Helpers
@@ -51,12 +51,25 @@ class MovieDetailViewController: UIViewController {
         lbWebsite.textColor = .systemBlue
     }
     
-    private func configureTapGesture() {
+    private func configureTapGestures() {
+        configureTapGestureOnWebsiteLabel()
+        configureTapGestureOnImage()
+    }
+    
+    private func configureTapGestureOnWebsiteLabel() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         lbWebsite.isUserInteractionEnabled = true
         lbWebsite.addGestureRecognizer(gesture)
     }
     
+    private func configureTapGestureOnImage() {
+        let gesture = UITapGestureRecognizer(target: self,
+                                             action: #selector(handleShowFullSizeImage(sender:)))
+        ivMovieDetail.isUserInteractionEnabled = true
+        ivMovieDetail.addGestureRecognizer(gesture)
+    }
+    
+    //MARK: Selectors
     @objc private func handleTap() {
         
         var item = [Any]()
@@ -72,5 +85,24 @@ class MovieDetailViewController: UIViewController {
         let activity = UIActivityViewController(activityItems: item, applicationActivities: nil)
         activity.popoverPresentationController?.sourceView = self.view
         self.present(activity, animated: true)
+    }
+    
+    @objc private func handleShowFullSizeImage(sender: UITapGestureRecognizer) {
+        let imageView = sender.view as! UIImageView
+        
+        let newImageView = UIImageView(image: imageView.image)
+        newImageView.frame = UIScreen.main.bounds
+        newImageView.backgroundColor = .black
+        newImageView.contentMode = .scaleAspectFit
+        newImageView.isUserInteractionEnabled = true
+        
+        let tap = UITapGestureRecognizer(target: self,
+                                         action: #selector(handleDismissFullSizeImage(sender:)))
+        newImageView.addGestureRecognizer(tap)
+        self.view.addSubview(newImageView)
+    }
+    
+    @objc private func handleDismissFullSizeImage(sender: UITapGestureRecognizer) {
+        sender.view?.removeFromSuperview()
     }
 }
