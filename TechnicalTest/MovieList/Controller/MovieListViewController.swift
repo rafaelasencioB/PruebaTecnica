@@ -85,7 +85,7 @@ extension MovieListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let title = searchController.searchBar.text, !title.isEmpty, title.count > 2 else {
             if let text = searchController.searchBar.text, text.isEmpty && self.movies.count > 0 {
-                self.movies = []
+//                self.movies = []
             }
             return
         }
