@@ -13,6 +13,7 @@ class MovieListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     //MARK: Properties
+    private var page = 1
     private let reuseIdentifier = "MovieCell"
     
     private var movies = [Movie]() {
@@ -21,7 +22,7 @@ class MovieListViewController: UIViewController {
         }
     }
     
-    private let searchController = UISearchController()
+    private var searchController: UISearchController!
     private let service: MovieService = MovieLoader.shared
     
     //MARK: Lifecycle
@@ -37,15 +38,22 @@ class MovieListViewController: UIViewController {
     }
     
     private func configureSearchController() {
+        searchController = UISearchController(searchResultsController: nil)
         navigationItem.searchController = searchController
         searchController.searchBar.placeholder = "Search movie by title"
         searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        searchController.obscuresBackgroundDuringPresentation = false
     }
     
     private func configureTable() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "MovieCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
+    }
+    
+    private func resetPagination() {
+        self.page = 1
     }
 }
 
@@ -65,6 +73,7 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        searchController.isActive = false
         
         let id = self.movies[indexPath.row].imdbID
         service.fetchMovie(withId: id) { result in
@@ -83,18 +92,33 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-//MARK:
+
+extension MovieListViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        //Clean table
+        if searchBar.text == "" {
+            self.movies.removeAll()
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.movies.removeAll()
+    }
+}
+
+//MARK: UISearchResultsUpdating
 extension MovieListViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
+        resetPagination()
+        
+        //Make search when text to seach is not empty and longer than 2 characters
         guard let title = searchController.searchBar.text, !title.isEmpty, title.count > 2 else {
-            if let text = searchController.searchBar.text, text.isEmpty && self.movies.count > 0 {
-//                self.movies = []
-            }
             return
         }
         
-        service.fetchMovies(withTitle: title) { result in
+        service.fetchMovies(pagination: false, page: page, withTitle: title) { result in
             switch result {
                 
             case .success(let movies):
@@ -107,5 +131,35 @@ extension MovieListViewController: UISearchResultsUpdating {
                 }
             }
         }
+    }
+}
+
+extension MovieListViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let position = scrollView.contentOffset.y
+        
+        if position > (self.tableView.contentSize.height - 100 - scrollView.frame.size.height) {
+            guard let searchText = searchController.searchBar.text, !searchText.isEmpty else { return }
+            guard !service.isPaginating else { return }
+            
+            page += 1
+            service.fetchMovies(pagination: true, page: page, withTitle: searchText) { [weak self] result in
+                guard let self = self else { return }
+                
+                switch result {
+                    
+                case .success(let moreMovies):
+                    self.movies.append(contentsOf: moreMovies.result)
+                case .failure(let error):
+                    if error == .apiError {
+                        Utils.showAlert(on: self, title: error.localizedDescription)
+                    } else {
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+        }
+        
     }
 }

@@ -84,6 +84,8 @@
 			isa = PBXGroup;
 			children = (
 				8A1E500B2758C3FA00D51B8C /* TechnicalTest */,
+				8AC535E2275F71A800E07A63 /* Resources */,
+				8AC535E3275F72DD00E07A63 /* Helpers */,
 				8A1E500A2758C3FA00D51B8C /* Products */,
 				A903792B286884B87630C247 /* Pods */,
 				034FD1ADFC7572E989625F43 /* Frameworks */,
@@ -101,31 +103,23 @@
 		8A1E500B2758C3FA00D51B8C /* TechnicalTest */ = {
 			isa = PBXGroup;
 			children = (
+				8AC535E1275F718900E07A63 /* Application */,
 				8A1E5039275912F900D51B8C /* MovieDetail */,
 				8A1E502C2758F02300D51B8C /* MovieList */,
-				8A1E50232758C83C00D51B8C /* Model */,
-				8A1E50202758C7EA00D51B8C /* Service */,
+				8A1E50202758C7EA00D51B8C /* Networking */,
 				8AA3D5D4275A454D003D61E9 /* Extensions */,
-				8A1E500C2758C3FA00D51B8C /* AppDelegate.swift */,
-				8A1E500E2758C3FA00D51B8C /* SceneDelegate.swift */,
-				8A1E50152758C3FD00D51B8C /* Assets.xcassets */,
-				8A1E50172758C3FD00D51B8C /* LaunchScreen.storyboard */,
-				8A1E501A2758C3FD00D51B8C /* Info.plist */,
-				8A1E502A2758D54C00D51B8C /* Utils.swift */,
-				8AA3D5D0275A44D0003D61E9 /* ReachabilityManager.swift */,
-				8AA3D5D6275A4B98003D61E9 /* OfflineViewController.swift */,
-				8AA3D5D7275A4B98003D61E9 /* OfflineViewController.xib */,
 			);
 			path = TechnicalTest;
 			sourceTree = "<group>";
 		};
-		8A1E50202758C7EA00D51B8C /* Service */ = {
+		8A1E50202758C7EA00D51B8C /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				8A1E50232758C83C00D51B8C /* Model */,
 				8A1E50212758C7FC00D51B8C /* MovieService.swift */,
 				8A1E50282758D35F00D51B8C /* MovieLoader.swift */,
 			);
-			path = Service;
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		8A1E50232758C83C00D51B8C /* Model */ = {
@@ -221,6 +215,44 @@
 				8AA3D5DA275A7BC3003D61E9 /* Extension+UIViewController.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8AC535E1275F718900E07A63 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				8A1E501A2758C3FD00D51B8C /* Info.plist */,
+				8A1E50172758C3FD00D51B8C /* LaunchScreen.storyboard */,
+				8A1E500E2758C3FA00D51B8C /* SceneDelegate.swift */,
+				8A1E500C2758C3FA00D51B8C /* AppDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		8AC535E2275F71A800E07A63 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8A1E50152758C3FD00D51B8C /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8AC535E3275F72DD00E07A63 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8AC535E4275F72EA00E07A63 /* Views */,
+				8A1E502A2758D54C00D51B8C /* Utils.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		8AC535E4275F72EA00E07A63 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8AA3D5D0275A44D0003D61E9 /* ReachabilityManager.swift */,
+				8AA3D5D6275A4B98003D61E9 /* OfflineViewController.swift */,
+				8AA3D5D7275A4B98003D61E9 /* OfflineViewController.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		A903792B286884B87630C247 /* Pods */ = {
@@ -516,7 +548,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7EJKV8CGJ8;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TechnicalTest/Info.plist;
+				INFOPLIST_FILE = TechnicalTest/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -546,7 +578,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7EJKV8CGJ8;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TechnicalTest/Info.plist;
+				INFOPLIST_FILE = TechnicalTest/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

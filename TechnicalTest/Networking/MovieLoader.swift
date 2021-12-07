@@ -22,12 +22,18 @@ class MovieLoader: MovieService {
     
     private let jsonDecoder = Utils.jsonDecoder
     
-    func fetchMovies(withTitle title: String, completion: @escaping (Result<MovieResponse, MovieError>) -> Void) {
+    var pagination: Bool = false
+    var isPaginating: Bool = false
+    
+    func fetchMovies(pagination: Bool, page: Int, withTitle title: String, completion: @escaping (Result<MovieResponse, MovieError>) -> Void) {
+        
         guard let url = URL(string: BASE_URL) else {
             completion(.failure(.invalidEndpoint))
             return
         }
-        self.loadURLAndDecode(url: url, params: ["s": title], completion: completion)
+        self.pagination = pagination
+        
+        self.loadURLAndDecode(url: url, params: ["s": title, "page": "\(page)" ], completion: completion)
     }
     
     func fetchMovie(withId id: String, completion: @escaping (Result<MovieDetail, MovieError>) -> Void) {
@@ -61,6 +67,10 @@ class MovieLoader: MovieService {
         
         ProgressHUD.show()
         
+        if pagination {
+            isPaginating = true
+        }
+        
         session.dataTask(with: finalURL) { [weak self] data, response, error in
             ProgressHUD.dismiss()
             
@@ -88,7 +98,10 @@ class MovieLoader: MovieService {
     }
     
     private func executeCompletionInMainThread<D: Decodable>(with result: Result<D, MovieError>, completion: @escaping(Result<D, MovieError>) -> Void) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [self] in
+            if self.pagination {
+                self.isPaginating = false
+            }
             completion(result)
         }
     }
