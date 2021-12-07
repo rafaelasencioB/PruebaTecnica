@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class MovieListViewController: UIViewController {
 
@@ -13,6 +14,7 @@ class MovieListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     //MARK: Properties
+    private var cancellables = Set<AnyCancellable>()
     private var page = 1
     private let reuseIdentifier = "MovieCell"
     
@@ -22,7 +24,7 @@ class MovieListViewController: UIViewController {
         }
     }
     
-    private var searchController: UISearchController!
+    private let searchController = UISearchController(searchResultsController: nil)
     private let service: MovieService = MovieLoader.shared
     
     //MARK: Lifecycle
@@ -38,10 +40,10 @@ class MovieListViewController: UIViewController {
     }
     
     private func configureSearchController() {
-        searchController = UISearchController(searchResultsController: nil)
+        setSearchBarListeners()
         navigationItem.searchController = searchController
         searchController.searchBar.placeholder = "Search movie by title"
-        searchController.searchResultsUpdater = self
+//        searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
     }
@@ -54,6 +56,31 @@ class MovieListViewController: UIViewController {
     
     private func resetPagination() {
         self.page = 1
+    }
+    
+    private func setSearchBarListeners() {
+        let publisher = NotificationCenter.default.publisher(for: UISearchTextField.textDidChangeNotification, object: searchController.searchBar.searchTextField)
+        
+        publisher.map {
+            ($0.object as! UISearchTextField).text ?? ""
+        }
+        .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
+        .sink { [weak self] movieTitle in
+            guard let self = self else { return }
+            self.service.fetchMovies(pagination: false, page: self.page, withTitle: movieTitle) { result in
+                switch result {
+                case .success(let movies):
+                    self.movies = movies.result
+                case .failure(let error):
+                    if error == .apiError {
+                        Utils.showAlert(on: self, title: error.localizedDescription)
+                    } else {
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+        }
+        .store(in: &cancellables)
     }
 }
 
@@ -92,48 +119,22 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-
+//MARK: UISearchBarDelegate
 extension MovieListViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        //Clean table
+        resetPagination()
         if searchBar.text == "" {
             self.movies.removeAll()
         }
     }
-    
+
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.movies.removeAll()
     }
 }
 
-//MARK: UISearchResultsUpdating
-extension MovieListViewController: UISearchResultsUpdating {
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        resetPagination()
-        
-        //Make search when text to seach is not empty and longer than 2 characters
-        guard let title = searchController.searchBar.text, !title.isEmpty, title.count > 2 else {
-            return
-        }
-        
-        service.fetchMovies(pagination: false, page: page, withTitle: title) { result in
-            switch result {
-                
-            case .success(let movies):
-                self.movies = movies.result
-            case .failure(let error):
-                if error == .apiError {
-                    Utils.showAlert(on: self, title: error.localizedDescription)
-                } else {
-                    print(error.localizedDescription)
-                }
-            }
-        }
-    }
-}
-
+//MARK: UIScrollViewDelegate
 extension MovieListViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
