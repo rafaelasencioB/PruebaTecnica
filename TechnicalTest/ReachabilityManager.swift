@@ -32,7 +32,18 @@ class ReachabilityManager: NSObject {
     static let shared = ReachabilityManager()
     
     @objc private func handleNetworkStatusChanges(_ notification: Notification) {
-        
+//        if let reachability = notification.object as? Reachability {
+//            if reachability.connection == .unavailable {
+//                print("Presentar OfflineViewController")
+//                let controller = OfflineViewController()
+//                controller.modalPresentationStyle = .fullScreen
+//                UIViewController.topMostViewController().present(controller, animated: true)
+//            } else {
+//                if let controller = UIViewController.topMostViewController() as? OfflineViewController {
+//                    controller.dismiss(animated: true)
+//                }
+//            }
+//        }
     }
     
     static func isReachable(completed: @escaping (ReachabilityManager) -> Void) {

@@ -17,15 +17,15 @@ enum MovieError: Error, CustomNSError {
     var localizedDescription: String {
         switch self {
         case .apiError:
-            return ""
+            return "Ha ocurrido un error. Inténtelo de nuevo mas tarde"
         case .invalidResponse:
-            return ""
+            return "Respuesta inválida"
         case .invalidEndpoint:
-            return ""
+            return "Endpoint inválido"
         case .noData:
-            return ""
+            return "No hay datos"
         case .serializationError:
-            return ""
+            return "Error de serialización"
         }
     }
     

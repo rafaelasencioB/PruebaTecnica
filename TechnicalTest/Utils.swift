@@ -5,7 +5,7 @@
 //  Created by Rafael Asencio on 2/12/21.
 //
 
-import Foundation
+import UIKit
 
 class Utils {
     
@@ -21,4 +21,10 @@ class Utils {
         dateFormatter.dateFormat = "yyyy-mm-dd"
         return dateFormatter
     }()
+    
+    static func showAlert(on target: UIViewController, title: String) {
+        let alertController = UIAlertController(title: title, message: "", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        target.present(alertController, animated: true, completion: nil)
+    }
 }

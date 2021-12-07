@@ -26,7 +26,9 @@
 		8A1E50422759148A00D51B8C /* MovieDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A1E50402759148A00D51B8C /* MovieDetailViewController.xib */; };
 		8A1E5044275945F000D51B8C /* Extension+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1E5043275945F000D51B8C /* Extension+UIImageView.swift */; };
 		8AA3D5D1275A44D0003D61E9 /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA3D5D0275A44D0003D61E9 /* ReachabilityManager.swift */; };
-		8AA3D5D3275A4528003D61E9 /* Extension+NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA3D5D2275A4528003D61E9 /* Extension+NotificationName.swift */; };
+		8AA3D5D8275A4B98003D61E9 /* OfflineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA3D5D6275A4B98003D61E9 /* OfflineViewController.swift */; };
+		8AA3D5D9275A4B98003D61E9 /* OfflineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AA3D5D7275A4B98003D61E9 /* OfflineViewController.xib */; };
+		8AA3D5DB275A7BC3003D61E9 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA3D5DA275A7BC3003D61E9 /* Extension+UIViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,7 +53,9 @@
 		8A1E50402759148A00D51B8C /* MovieDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailViewController.xib; sourceTree = "<group>"; };
 		8A1E5043275945F000D51B8C /* Extension+UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImageView.swift"; sourceTree = "<group>"; };
 		8AA3D5D0275A44D0003D61E9 /* ReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
-		8AA3D5D2275A4528003D61E9 /* Extension+NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+NotificationName.swift"; sourceTree = "<group>"; };
+		8AA3D5D6275A4B98003D61E9 /* OfflineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineViewController.swift; sourceTree = "<group>"; };
+		8AA3D5D7275A4B98003D61E9 /* OfflineViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OfflineViewController.xib; sourceTree = "<group>"; };
+		8AA3D5DA275A7BC3003D61E9 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		9845AEDAC7B213D225D9CA70 /* Pods-TechnicalTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TechnicalTest.debug.xcconfig"; path = "Target Support Files/Pods-TechnicalTest/Pods-TechnicalTest.debug.xcconfig"; sourceTree = "<group>"; };
 		E6B97590D4FDC3F3C0379134 /* Pods_TechnicalTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TechnicalTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -109,6 +113,8 @@
 				8A1E501A2758C3FD00D51B8C /* Info.plist */,
 				8A1E502A2758D54C00D51B8C /* Utils.swift */,
 				8AA3D5D0275A44D0003D61E9 /* ReachabilityManager.swift */,
+				8AA3D5D6275A4B98003D61E9 /* OfflineViewController.swift */,
+				8AA3D5D7275A4B98003D61E9 /* OfflineViewController.xib */,
 			);
 			path = TechnicalTest;
 			sourceTree = "<group>";
@@ -212,7 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				8A1E5043275945F000D51B8C /* Extension+UIImageView.swift */,
-				8AA3D5D2275A4528003D61E9 /* Extension+NotificationName.swift */,
+				8AA3D5DA275A7BC3003D61E9 /* Extension+UIViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -290,6 +296,7 @@
 				8A1E50192758C3FD00D51B8C /* LaunchScreen.storyboard in Resources */,
 				8A1E50162758C3FD00D51B8C /* Assets.xcassets in Resources */,
 				8A1E50342758F08000D51B8C /* MovieCell.xib in Resources */,
+				8AA3D5D9275A4B98003D61E9 /* OfflineViewController.xib in Resources */,
 				8A1E50142758C3FA00D51B8C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,15 +350,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AA3D5DB275A7BC3003D61E9 /* Extension+UIViewController.swift in Sources */,
 				8AA3D5D1275A44D0003D61E9 /* ReachabilityManager.swift in Sources */,
 				8A1E50112758C3FA00D51B8C /* MovieListViewController.swift in Sources */,
-				8AA3D5D3275A4528003D61E9 /* Extension+NotificationName.swift in Sources */,
 				8A1E50272758C93800D51B8C /* MovieError.swift in Sources */,
 				8A1E50332758F08000D51B8C /* MovieCell.swift in Sources */,
 				8A1E50292758D35F00D51B8C /* MovieLoader.swift in Sources */,
 				8A1E500D2758C3FA00D51B8C /* AppDelegate.swift in Sources */,
 				8A1E50222758C7FC00D51B8C /* MovieService.swift in Sources */,
 				8A1E500F2758C3FA00D51B8C /* SceneDelegate.swift in Sources */,
+				8AA3D5D8275A4B98003D61E9 /* OfflineViewController.swift in Sources */,
 				8A1E503E2759133F00D51B8C /* MovieDetail.swift in Sources */,
 				8A1E50252758C84300D51B8C /* Movie.swift in Sources */,
 				8A1E50412759148A00D51B8C /* MovieDetailViewController.swift in Sources */,
