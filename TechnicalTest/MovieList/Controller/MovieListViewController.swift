@@ -73,7 +73,11 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
                 let controller = MovieDetailViewController(movie: movie)
                 self.present(controller, animated: true)
             case .failure(let error):
-                print(error.localizedDescription)
+                if error == .apiError {
+                    Utils.showAlert(on: self, title: error.localizedDescription)
+                } else {
+                    print(error.localizedDescription)
+                }
             }
         }
     }
@@ -96,7 +100,11 @@ extension MovieListViewController: UISearchResultsUpdating {
             case .success(let movies):
                 self.movies = movies.result
             case .failure(let error):
-                print(error.localizedDescription)
+                if error == .apiError {
+                    Utils.showAlert(on: self, title: error.localizedDescription)
+                } else {
+                    print(error.localizedDescription)
+                }
             }
         }
     }
