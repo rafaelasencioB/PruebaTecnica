@@ -39,6 +39,11 @@ class MovieListViewController: UIViewController {
         configureTable()
     }
     
+    private func configureUI() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        title = "Movie App"
+    }
+    
     private func configureSearchController() {
         setSearchBarListeners()
         navigationItem.searchController = searchController
@@ -52,6 +57,7 @@ class MovieListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "MovieCell", bundle: nil), forCellReuseIdentifier: reuseIdentifier)
+        tableView.tableFooterView = UIView()
     }
     
     private func resetPagination() {
