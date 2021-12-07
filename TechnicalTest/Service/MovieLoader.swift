@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import ProgressHUD
 
 class MovieLoader: MovieService {
     
@@ -58,7 +59,11 @@ class MovieLoader: MovieService {
             return
         }
         
+        ProgressHUD.show()
+        
         session.dataTask(with: finalURL) { [weak self] data, response, error in
+            ProgressHUD.dismiss()
+            
             guard let self = self else { return }
             if error != nil {
                 self.executeCompletionInMainThread(with: .failure(.apiError), completion: completion)
