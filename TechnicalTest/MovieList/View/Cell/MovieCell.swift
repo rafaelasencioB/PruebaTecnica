@@ -28,6 +28,13 @@ class MovieCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        ivMovie.image = nil
+        lbTitle.text?.removeAll()
+        lbYear.text?.removeAll()
+    }
+    
     //MARK: Helpers
     func configure(movie: Movie) {
         if let url = movie.urlImage {
